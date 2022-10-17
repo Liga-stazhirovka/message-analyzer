@@ -34,7 +34,6 @@
                 <scope>test</scope>
             </dependency>
 
-
             <dependency>
                 <groupId>liga.medical</groupId>
                 <artifactId>common-dto</artifactId>
@@ -92,6 +91,7 @@
                 <artifactId>validation-api</artifactId>
                 <version>${validation-api.version}</version>
             </dependency>
+
         </dependencies>
     </dependencyManagement>
 

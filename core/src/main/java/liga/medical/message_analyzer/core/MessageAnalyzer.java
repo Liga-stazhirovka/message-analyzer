@@ -11,5 +11,4 @@ public class MessageAnalyzer {
     public static void main(String[] args) {
         SpringApplication.run(MessageAnalyzer.class, args);
     }
-
 }
