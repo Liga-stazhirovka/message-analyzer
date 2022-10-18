@@ -1,6 +1,7 @@
 package liga.medical.message_analyzer.core.producer;
 
-import liga.medical.message_analyzer.dto.Message;
+import liga.medical.message_analyzer.api.CommonMonitoringProducer;
+import liga.medical.message_analyzer.producer.MessageProducer;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -11,10 +12,11 @@ import static liga.medical.message_analyzer.core.config.RabbitConfiguration.QUEU
 @Component
 @Getter
 @RequiredArgsConstructor
-public class CommonMonitoringProducer {
+public class CommonMonitoringProducerImpl implements CommonMonitoringProducer {
     private final RabbitTemplate template;
 
-    public void sendMessage(Message message) {
-        template.convertAndSend(QUEUE_NAME, message);
+    @Override
+    public void sendMessage(MessageProducer messageProducer) {
+        template.convertAndSend(QUEUE_NAME, messageProducer);
     }
 }

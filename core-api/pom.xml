@@ -19,5 +19,6 @@
             <groupId>liga.medical</groupId>
             <artifactId>monitoring-dto</artifactId>
         </dependency>
+
     </dependencies>
 </project>
