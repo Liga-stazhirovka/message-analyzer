@@ -1,4 +1,4 @@
-package liga.medical.message_analyzer.type_status;
+package liga.medical.message_analyzer.message_status;
 
 public enum MessageStatus {
     DAILY, ALERT, ERROR

@@ -1,6 +1,6 @@
 package liga.medical.message_analyzer.dto;
 
-import liga.medical.message_analyzer.type_status.MessageStatus;
+import liga.medical.message_analyzer.message_status.MessageStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
