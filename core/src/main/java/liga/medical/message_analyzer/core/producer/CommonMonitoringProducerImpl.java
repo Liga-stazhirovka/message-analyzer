@@ -12,9 +12,10 @@ import org.springframework.stereotype.Component;
 @Getter
 @RequiredArgsConstructor
 public class CommonMonitoringProducerImpl implements CommonMonitoringProducer {
-    private final RabbitTemplate template;
     @Value("${spring.rabbitmq.host}")
-    public String queueName;
+    private String queueName;
+
+    private final RabbitTemplate template;
 
     @Override
     public void sendMessage(MessageProducer messageProducer) {

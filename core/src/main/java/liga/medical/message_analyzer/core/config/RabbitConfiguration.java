@@ -15,9 +15,9 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class RabbitConfiguration {
     @Value("${spring.rabbitmq.host}")
-    public String host;
+    private String host;
     @Value("${spring.rabbitmq.host}")
-    public String queueName;
+    private String queueName;
 
     @Bean
     public ConnectionFactory connectionFactory() {
