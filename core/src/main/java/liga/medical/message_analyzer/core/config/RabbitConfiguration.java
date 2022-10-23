@@ -14,14 +14,24 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitConfiguration {
+    @Value("${spring.rabbitmq.queue}")
+    private String queueName;
+
+    @Value("${spring.rabbitmq.username}")
+    private String username;
+
+    @Value("${spring.rabbitmq.password}")
+    private String password;
+
     @Value("${spring.rabbitmq.host}")
     private String host;
-    @Value("${spring.rabbitmq.host}")
-    private String queueName;
 
     @Bean
     public ConnectionFactory connectionFactory() {
-        return new CachingConnectionFactory(host);
+        CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(host);
+        cachingConnectionFactory.setUsername(username);
+        cachingConnectionFactory.setPassword(password);
+        return cachingConnectionFactory;
     }
 
     @Bean

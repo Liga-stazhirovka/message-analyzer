@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @RequiredArgsConstructor
 public class CommonMonitoringProducerImpl implements CommonMonitoringProducer {
-    @Value("${spring.rabbitmq.host}")
+    @Value("${spring.rabbitmq.queue}")
     private String queueName;
 
     private final RabbitTemplate template;

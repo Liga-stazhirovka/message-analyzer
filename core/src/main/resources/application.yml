@@ -1,0 +1,8 @@
+spring:
+  rabbitmq:
+    host: localhost
+    password: guest
+    username: guest
+    port: 15672
+    queue: common_monitoring
+    
