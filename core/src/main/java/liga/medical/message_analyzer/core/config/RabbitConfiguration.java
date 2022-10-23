@@ -26,6 +26,7 @@ public class RabbitConfiguration {
     @Value("${spring.rabbitmq.host}")
     private String host;
 
+
     @Bean
     ConnectionFactory connectionFactory() {
         CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(host);
@@ -35,8 +36,15 @@ public class RabbitConfiguration {
     }
 
     @Bean
+    Queue getCommonMonitoringQueue() {
+        return new Queue(queueName);
+    }
+
+    @Bean
     AmqpAdmin amqpAdmin() {
-        return new RabbitAdmin(connectionFactory());
+        AmqpAdmin admin = new RabbitAdmin(connectionFactory());
+        admin.declareQueue(getCommonMonitoringQueue());
+        return admin;
     }
 
     @Bean
@@ -49,10 +57,5 @@ public class RabbitConfiguration {
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
         rabbitTemplate.setMessageConverter(jsonMessageConverter());
         return rabbitTemplate;
-    }
-
-    @Bean
-    Queue getCommonMonitoringQueue() {
-        return new Queue(queueName, true);
     }
 }
