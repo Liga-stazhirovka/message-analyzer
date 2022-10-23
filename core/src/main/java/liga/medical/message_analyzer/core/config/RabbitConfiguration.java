@@ -27,7 +27,7 @@ public class RabbitConfiguration {
     private String host;
 
     @Bean
-    public ConnectionFactory connectionFactory() {
+    ConnectionFactory connectionFactory() {
         CachingConnectionFactory cachingConnectionFactory = new CachingConnectionFactory(host);
         cachingConnectionFactory.setUsername(username);
         cachingConnectionFactory.setPassword(password);
@@ -35,24 +35,24 @@ public class RabbitConfiguration {
     }
 
     @Bean
-    public AmqpAdmin amqpAdmin() {
+    AmqpAdmin amqpAdmin() {
         return new RabbitAdmin(connectionFactory());
     }
 
     @Bean
-    public MessageConverter jsonMessageConverter() {
+    MessageConverter jsonMessageConverter() {
         return new Jackson2JsonMessageConverter();
     }
 
     @Bean
-    public RabbitTemplate rabbitTemplate() {
+    RabbitTemplate rabbitTemplate() {
         final RabbitTemplate rabbitTemplate = new RabbitTemplate(connectionFactory());
         rabbitTemplate.setMessageConverter(jsonMessageConverter());
         return rabbitTemplate;
     }
 
     @Bean
-    public Queue getCommonMonitoringQueue() {
+    Queue getCommonMonitoringQueue() {
         return new Queue(queueName, true);
     }
 }
