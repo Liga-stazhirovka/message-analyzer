@@ -8,17 +8,20 @@ import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class RabbitConfiguration {
-    public static final String HOST = "localhost";
-    public static final String QUEUE_NAME = "common_monitoring";
+    @Value("${spring.rabbitmq.host}")
+    public String host;
+    @Value("${spring.rabbitmq.host}")
+    public String queueName;
 
     @Bean
     public ConnectionFactory connectionFactory() {
-        return new CachingConnectionFactory(HOST);
+        return new CachingConnectionFactory(host);
     }
 
     @Bean
@@ -40,6 +43,6 @@ public class RabbitConfiguration {
 
     @Bean
     public Queue getCommonMonitoringQueue() {
-        return new Queue(QUEUE_NAME, true);
+        return new Queue(queueName, true);
     }
 }
